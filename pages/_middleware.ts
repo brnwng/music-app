@@ -1,4 +1,5 @@
-import { NextRequest, NextResponse } from "next/server";
+import type { NextRequest } from 'next/server'
+import { NextResponse } from 'next/server';
 
 const signedInPages = [
     '/',
@@ -7,11 +8,14 @@ const signedInPages = [
 ]
 
 export default function middleware(req: NextRequest) {
-    if (signedInPages.find((p) => p === req.nextUrl.pathname)) {
+    const nextUrl = req.nextUrl;
+    if (signedInPages.find((p) => p === nextUrl.pathname)) {
         const token = req.cookies.access_token;
 
         if (!token) {
-            return NextResponse.redirect('/signin');
+            const url = nextUrl.clone();
+            url.pathname = '/signin';
+            return NextResponse.redirect(url);
         }
     }
 }
