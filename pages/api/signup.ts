@@ -14,6 +14,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         user = await prisma.user.create({
             data: {
                 email,
+                firstName: 'Brian', // TODO: add first/last
+                lastName: 'Wong',
                 password: bcrypt.hashSync(password, salt)
             },
         })
