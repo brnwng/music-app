@@ -13,7 +13,7 @@ function Home({ artists }) {
       image='https://placem.at/people?w=300&h=300&random=some_seed'
       subtitle='profile'
       title={`${user?.firstName} ${user?.lastName}`}
-      description='15 public playlists'>
+      description={`${user?.playlistCount} public playlists`}>
       <Box color='white' paddingX='40px'>
         <Box marginBottom='40px'>
           <Text fontSize='2xl' fontWeight='bold'>Top artist this month</Text>
