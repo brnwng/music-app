@@ -2,16 +2,18 @@ import { Box, Text, Flex } from '@chakra-ui/layout';
 import GradientLayout from '../components/gradientLayout';
 import prisma from '../lib/prisma';
 import { Image } from '@chakra-ui/react';
+import { useMe } from '../lib/hooks';
 
 function Home({ artists }) {
+  const { user } = useMe();
   return (
     <GradientLayout
       roundImage
       color='purple'
       image='https://placem.at/people?w=300&h=300&random=some_seed'
       subtitle='profile'
-      title='Brian Wong'
-      description='15 public playlists'>
+      title={`${user?.firstName} ${user?.lastName}`}
+      description={`${user?.playlistCount} public playlists`}>
       <Box color='white' paddingX='40px'>
         <Box marginBottom='40px'>
           <Text fontSize='2xl' fontWeight='bold'>Top artist this month</Text>
@@ -19,7 +21,7 @@ function Home({ artists }) {
         </Box>
         <Flex>
           {artists.map(artist => (
-            <Box paddingX='10px' width='20%'>
+            <Box paddingX='10px' width='20%' key={artist.id}>
               <Box bg='gray.900' borderRadius='4px' padding='15px' width='100%'>
                 <Image
                   src={`https://placem.at/people?w=300&h=300&random=${Math.random()}`}
