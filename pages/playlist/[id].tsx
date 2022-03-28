@@ -1,5 +1,6 @@
 import { JwtPayload } from 'jsonwebtoken';
 import GradientLayout from '../../components/gradientLayout';
+import SongTable from '../../components/songsTable';
 import { validateToken } from '../../lib/auth';
 import prisma from '../../lib/prisma';
 
@@ -28,7 +29,7 @@ const Playlist = ({ playlist }) => {
             description={`${playlist.songs.length} songs`}
             image={`https://picsum.photos/400?random=${playlist.id}`}
         >
-            <div>hello</div>
+            <SongTable songs={playlist.songs} />
         </GradientLayout>
     )
 }
