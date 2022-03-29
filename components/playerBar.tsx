@@ -10,7 +10,7 @@ const PlayerBar = () => {
                     <Text fontSize='sm'>Artist Name</Text>
                 </Box>
                 <Box width='40%'>
-                    <Player />
+                    <Player songs={undefined} activeSong={undefined} />
                 </Box>
             </Flex>
         </Box>
